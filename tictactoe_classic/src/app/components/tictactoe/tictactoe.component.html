@@ -1,0 +1,26 @@
+<div class="game-container">
+  <div class="game-status">
+    <h2 *ngIf="!gameOver">Current Player: {{ currentPlayer }}</h2>
+    <h2 *ngIf="winner">Player {{ winner }} Wins!</h2>
+    <h2 *ngIf="isDraw">Game Draw!</h2>
+  </div>
+
+  <div class="game-board">
+    <div class="board-row" *ngFor="let row of board; let i = index">
+      <button 
+        class="board-cell" 
+        *ngFor="let cell of row; let j = index"
+        (click)="makeMove(i, j)"
+        [disabled]="cell !== '' || gameOver"
+      >
+        {{ cell }}
+      </button>
+    </div>
+  </div>
+
+  <div class="game-controls">
+    <button class="reset-button" (click)="resetGame()">
+      Restart Game
+    </button>
+  </div>
+</div>
